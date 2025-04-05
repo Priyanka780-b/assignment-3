@@ -1,0 +1,52 @@
+
+//Write a Java Program to count the number of words in a string using HashMap. 
+
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Scanner;
+
+public class WordCounter {
+    public static void main(String[] args) {
+        // Input from user
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Enter a string:");
+        String input = scanner.nextLine();
+
+        // Convert to lowercase and split by whitespace
+        String[] words = input.toLowerCase().split("\\s+");
+
+        // Create HashMap to store word count
+        HashMap<String, Integer> wordCount = new HashMap<>();
+
+        // Count words
+        for (String word : words) {
+            // Remove punctuation from each word
+            word = word.replaceAll("[^a-zA-Z]", "");
+            if (word.isEmpty()) continue;
+
+            wordCount.put(word, wordCount.getOrDefault(word, 0) + 1);
+        }
+
+        // Print word counts
+        System.out.println("Word counts:");
+        for (Map.Entry<String, Integer> entry : wordCount.entrySet()) {
+            System.out.println(entry.getKey() + ": " + entry.getValue());
+        }
+
+        scanner.close();
+    }
+}
+
+Example
+
+Input:
+
+Hello world! Hello Java world.
+
+Output:
+
+hello: 2
+world: 2
+java: 1
+
+Let me know if you want to count total words instead of frequency per word.
